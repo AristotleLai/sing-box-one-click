@@ -19,18 +19,30 @@
 
 * * *
 ## 1.更新信息
-2024.05.09 v1.2.4 Add hysteria2 port hopping. Supported Clients: ShadowRocket / NekoBox / Clash; 添加 hysteria2 的跳跃端口，支持客户端: ShadowRocket / NekoBox / Clash
+2024.12.31 v1.2.10 Adapted v1.11.0-beta.17 to add port hopping for hysteria2 in sing-box client output; 适配 v1.11.0-beta.17，在 sing-box 客户端输出中添加 hysteria2 的端口跳跃
 
-2024.05.06 v1.2.3 Automatically detects native IPv4 and IPv6 for warp-installed machines to minimize interference with warp ip; 对于已安装 warp 机器，自动识别原生的 IPv4 和 IPv6，以减少受 warp ip 的干扰
+2024.12.29 v1.2.9 Refactored the chatGPT detection method based on lmc999's detection and unlocking script; 根据 lmc999 的检测解锁脚本，重构了检测 chatGPT 方法
 
-2024.05.03 v1.2.2 Complete 8 non-interactive installation modes, direct output results. Suitable for mass installation scenarios. You can put the commands in the favorites of the ssh software. Please refer to the README.md description for details. 完善8种无交互安装模式，直接输出结果，适合大量装机的情景，可以把命令放在 ssh 软件的收藏夹，详细请参考README.md 说明
+2024.12.10 v1.2.8 Thank you to the veteran player Fan Glider Fangliding for the technical guidance on Warp's routing! 感谢资深玩家 风扇滑翔翼 Fangliding 关于 Warp 的分流的技术指导
 
-2024.04.16 v1.2.1 1. Fix the bug of dynamically adding and removing protocols; 2. CentOS 7 add EPEL to install nginx; 1. 修复动态增加和删除协议的 bug; 2. CentOS 7 增加 EPEL 软件仓库，以便安装 Nginx
+2024.12.10 v1.2.7 Compatible with Sing-box 1.11.0-beta.8+. Thanks to the PR from brother Maxrxf. I've already given up myself; 适配 Sing-box 1.11.0-beta.8+，感谢 Maxrxf 兄弟的 PR，我自己已经投降的了
+
+2024.10.28 v1.2.6 1. Fixed the bug that clash subscription failed when [-n] re-fetches the subscription; 2. vmess + ws encryption changed from none to auto; 3. Replaced a CDN; 1. 修复 [-n] 重新获取订阅时，clash 订阅失效的bug; 2. vmess + ws 加密方式从none改为auto; 3. 更换了一个 CDN
 
 <details>
     <summary>历史更新 history（点击即可展开或收起）</summary>
 <br>
 
+>2024.08.06 v1.2.5 Add detection of TCP brutal. Sing-box will not use this module if not installed. 增加 TCP brutal 的检测，如果没有安装，Sing-box 将不使用该模块
+>
+>2024.05.09 v1.2.4 Add hysteria2 port hopping. Supported Clients: ShadowRocket / NekoBox / Clash; 添加 hysteria2 的跳跃端口，支持客户端: ShadowRocket / NekoBox / Clash
+>
+>2024.05.06 v1.2.3 Automatically detects native IPv4 and IPv6 for warp-installed machines to minimize interference with warp ip; 对于已安装 warp 机器，自动识别原生的 IPv4 和 IPv6，以减少受 warp ip 的干扰
+>
+>2024.05.03 v1.2.2 Complete 8 non-interactive installation modes, direct output results. Suitable for mass installation scenarios. You can put the commands in the favorites of the ssh software. Please refer to the README.md description for details. 完善8种无交互安装模式，直接输出结果，适合大量装机的情景，可以把命令放在 ssh 软件的收藏夹，详细请参考README.md 说明
+>
+>2024.04.16 v1.2.1 1. Fix the bug of dynamically adding and removing protocols; 2. CentOS 7 add EPEL to install nginx; 1. 修复动态增加和删除协议的 bug; 2. CentOS 7 增加 EPEL 软件仓库，以便安装 Nginx
+>
 >2024.04.12 v1.2.0 1. Add Cloudflare Argo Tunnel, so that 10 protocols, including the transport mode of ws, no longer need to bring our own domain; 2. Cloudflare Argo Tunnel supports try, Json and Token methods. Use of [sb -t] online switching; 3. Cloudflare Argo Tunnel switch is [sb -a], and the Sing-box switch is changed from [sb -o] to [sb -s]; 4. If Json or Token Argo is used, the subscription address is the domain name; 5. For details: https://github.com/fscarmen/sing-box; 1. 增加 Cloudflare Argo Tunnel，让包括传输方式为ws在内的10个协议均不再需要自带域名; 2. Cloudflare Argo Tunnel 支持临时、Json 和 Token 方式，支持使用 [sb -t] 在线切换; 3.  Cloudflare Argo Tunnel 开关为 [sb -a]，Sing-box 开关从 [sb -o] 更换为 [sb -s]; 4. 若使用 Json 或者 Token 固定域名 Argo，则订阅地址则使用该域名; 5. 详细参考: https://github.com/fscarmen/sing-box
 >
 >2024.04.01 sing-box + argo container version is newly launched, for details: https://github.com/fscarmen/sing-box; sing-box 全家桶 + argo 容器版本全新上线，详细参考: https://github.com/fscarmen/sing-box
@@ -126,7 +138,7 @@ bash <(wget -qO- https://raw.githubusercontent.com/fscarmen/sing-box/main/sing-b
 ### 方式2. KV 传参，举例
 
 <details>
-    <summary> 使用 Origin Rule + 订阅</summary>
+    <summary> 使用 Origin Rule + 订阅（点击即可展开或收起）</summary>
 <br>
 
 ```
@@ -148,7 +160,7 @@ bash <(wget -qO- https://raw.githubusercontent.com/fscarmen/sing-box/main/sing-b
 </details>
 
 <details>
-    <summary> 使用 Origin Rule ，不要订阅 </summary>
+    <summary> 使用 Origin Rule ，不要订阅（点击即可展开或收起）</summary>
 <br>
 
 ```
@@ -168,7 +180,7 @@ bash <(wget -qO- https://raw.githubusercontent.com/fscarmen/sing-box/main/sing-b
 </details>
 
 <details>
-    <summary> 使用 Argo 临时隧道 + 订阅 </summary>
+    <summary> 使用 Argo 临时隧道 + 订阅（点击即可展开或收起）</summary>
 <br>
 
 ```
@@ -188,7 +200,7 @@ bash <(wget -qO- https://raw.githubusercontent.com/fscarmen/sing-box/main/sing-b
 </details>
 
 <details>
-    <summary> 使用 Argo 临时隧道，不要订阅 </summary>
+    <summary> 使用 Argo 临时隧道，不要订阅（点击即可展开或收起）</summary>
 <br>
 
 ```
@@ -207,7 +219,7 @@ bash <(wget -qO- https://raw.githubusercontent.com/fscarmen/sing-box/main/sing-b
 </details>
 
 <details>
-    <summary> 使用 Argo Json 隧道 + 订阅 </summary>
+    <summary> 使用 Argo Json 隧道 + 订阅（点击即可展开或收起）</summary>
 <br>
 
 ```
@@ -229,7 +241,7 @@ bash <(wget -qO- https://raw.githubusercontent.com/fscarmen/sing-box/main/sing-b
 </details>
 
 <details>
-    <summary> 使用 Argo Json 隧道，不要订阅 </summary>
+    <summary> 使用 Argo Json 隧道，不要订阅（点击即可展开或收起）</summary>
 <br>
 
 ```
@@ -250,7 +262,7 @@ bash <(wget -qO- https://raw.githubusercontent.com/fscarmen/sing-box/main/sing-b
 </details>
 
 <details>
-    <summary> 使用 Argo Token 隧道 + 订阅 </summary>
+    <summary> 使用 Argo Token 隧道 + 订阅（点击即可展开或收起）</summary>
 <br>
 
 ```
@@ -272,7 +284,7 @@ bash <(wget -qO- https://raw.githubusercontent.com/fscarmen/sing-box/main/sing-b
 </details>
 
 <details>
-    <summary> 使用 Argo Token 隧道，不要订阅 </summary>
+    <summary> 使用 Argo Token 隧道，不要订阅（点击即可展开或收起）</summary>
 <br>
 
 ```
@@ -338,7 +350,7 @@ bash <(wget -qO- https://raw.githubusercontent.com/fscarmen/sing-box/main/sing-b
 * 需要20个连续可用的端口，以 `START_PORT` 开始第一个
 
 <details>
-    <summary> Docker 部署 </summary>
+    <summary> Docker 部署（点击即可展开或收起）</summary>
 <br>
 
 ```
@@ -369,7 +381,7 @@ docker run -dit \
 </details>
 
 <details>
-    <summary> Docker Compose 部署 </summary>
+    <summary> Docker Compose 部署（点击即可展开或收起）</summary>
 <br>
 
 ```
@@ -483,10 +495,11 @@ services:
 |   `-- private.key                          # SSL/TLS 证书的私钥信息
 |-- conf                                     # sing-box server 配置文件目录
 |   |-- 00_log.json                          # 日志配置文件
-|   |-- 01_outbounds.json                    # 服务端出站配置文件，已加了 warp 账户信息
-|   |-- 02_route.json                        # 路由配置文件，chatGPT 使用 warp ipv6 链式代理出站
-|   |-- 03_experimental.json                 # 缓存配置文件
-|   |-- 04_dns.json                          # DNS 规则文件
+|   |-- 01_outbounds.json                    # 服务端出站配置文件
+|   |-- 02_endpoints.json                    # 配置 endpoints，添加 warp 账户信息配置文件
+|   |-- 03_route.json                        # 路由配置文件，chatGPT 使用 warp ipv6 链式代理出站
+|   |-- 04_experimental.json                 # 缓存配置文件
+|   |-- 05_dns.json                          # DNS 规则文件
 |   |-- 11_xtls-reality_inbounds.json        # Reality vision 协议配置文件
 |   |-- 12_hysteria2_inbounds.json           # Hysteria2 协议配置文件
 |   |-- 13_tuic_inbounds.json                # Tuic V5 协议配置文件 # Hysteria2 协议配置文件
